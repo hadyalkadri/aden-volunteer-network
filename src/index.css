@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/montserrat/800.css";
+@import "@fontsource/inter/300.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+
+@theme {
+  --color-brand-orange: #D25327;
+  --color-brand-navy: #334B68;
+  --color-brand-peach: #F0B698;
+  --color-brand-sage: #A1C2BD;
+  --color-brand-steelLight: #A1B2C6;
+  --color-brand-taupe: #9A9488;
+  --color-brand-cream: #F7F4E8;
+  --color-brand-dark: #2D3136;
+  --color-brand-greyLight: #E8E6DD;
+
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF8EF;
+  color: #2D3136;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
