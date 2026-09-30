@@ -1,23 +1,55 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { MapPin, MessageSquare, Users,  } from 'lucide-react';
 import {
   FaFacebookF,
-  FaInstagram,
   FaTwitter,
-  FaYoutube
+  FaYoutube,
+  FaLinkedinIn
 } from 'react-icons/fa';
 
 export default function ContactAndSocial() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setLoading(true);
+    setErrorMsg('');
+
+    // Object keys must match the {{variable_name}} tags in your EmailJS template
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      )
+      .then(
+        () => {
+          setSubmitted(true);
+          setLoading(false);
+          setFormData({ name: '', email: '', message: '' });
+          setTimeout(() => setSubmitted(false), 5000);
+        },
+        (error) => {
+          console.error('EmailJS Error:', error);
+          setErrorMsg('Something went wrong. Please try again later.');
+          setLoading(false);
+        }
+      );
   };
 
   return (
@@ -34,6 +66,12 @@ export default function ContactAndSocial() {
           {submitted && (
             <div className="mb-4 p-3 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-md text-xs font-semibold">
               Thank you for reaching out! We will contact you shortly.
+            </div>
+          )}
+
+          {errorMsg && (
+            <div className="mb-4 p-3 bg-rose-100 border border-rose-300 text-rose-800 rounded-md text-xs font-semibold">
+              {errorMsg}
             </div>
           )}
 
@@ -70,9 +108,10 @@ export default function ContactAndSocial() {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="bg-brand-dark text-white rounded-full px-8 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-brand-orange transition-colors cursor-pointer font-heading"
             >
-              SEND
+              {loading ? 'SENDING...' : 'SEND'}
             </button>
           </form>
         </div>
@@ -110,7 +149,7 @@ export default function ContactAndSocial() {
                 Contact information:
               </p>
               <div className="px-1">
-                <p className="text-xs text-brand-dark/70 font-normal font-body mb-2">aden.volunteer.network@gmail.com</p>
+                <p className="text-xs text-brand-dark/70 font-normal font-body mb-2">adenvolunteernetwork@gmail.com</p>
                 <p className="text-xs text-brand-dark/70 font-normal font-body mb-2">+967 774 585 750</p>
                 <p className="text-xs text-brand-dark/70 font-normal font-body mb-2">Aden, Yemen</p>
               </div>
@@ -119,13 +158,13 @@ export default function ContactAndSocial() {
 
           {/* Social Links */}
           <div className="flex items-center gap-4 text-brand-dark">
-            <a href="#facebook" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61595028057306" target="_blank" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
               <FaFacebookF className="text-[18px] md:text-[28px]" />
             </a>
-            <a href="#instagram" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
-              <FaInstagram className="text-[18px] md:text-[28px]" />
+            <a href="https://www.linkedin.com/company/aden-volunteer-network/" target="_blank" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
+              <FaLinkedinIn className="text-[18px] md:text-[28px]" />
             </a>
-            <a href="#twitter" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
+            <a href="https://x.com/adenvolunteernk" target="_blank" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
               <FaTwitter className="text-[18px] md:text-[28px]" />
             </a>
             <a href="#youtube" className="p-2 border border-brand-dark/30 rounded-full bg-gray-800 text-white hover:text-brand-orange hover:border-brand-orange transition-colors">

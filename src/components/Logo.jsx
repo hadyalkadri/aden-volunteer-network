@@ -29,7 +29,7 @@ export default function Logo({ width = "w-[120px]" }) {
     // </div>
 
     // <div className={`flex items-center gap-3 ${className}`}>
-      <img src={logo} alt="Aden Volunteer Network Logo" className={`object-contain ${width} h-auto`} />
+      <img src={logo} alt="Aden Volunteer Network Logo" className={`object-contain ${width} h-auto `} />
 
     // </div>
 

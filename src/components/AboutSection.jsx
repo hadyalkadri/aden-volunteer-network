@@ -22,10 +22,10 @@ export default function AboutSection() {
           </h2>
           <div className="space-y-4 text-brand-dark/80 font-light text-sm md:text-base leading-relaxed font-body">
             <p>
-              VOLUNTEER SANS LIGHT is dedicated to creating impactful workshops, skill-building opportunities, and seamless community connections across Aden. We connect ambitious youth directly with non-profits and humanitarian organizations.
+              <b>ADEN VOLUNTEER NETWORK (AVN)</b> is a youth-led initiative that bridges passionate young talent with non-governmental organizations and civil society projects across Aden. By streamlining deployment, delivering capacity-building guidance, and promoting civic engagement.
             </p>
             <p>
-              Our geometric framework aims to match volunteers based on their skills, passions, and background to ensure structured and sustainable local progress.
+              AVN empowers local youth to gain real-world experience while driving meaningful, measurable community development and social impact.
             </p>
           </div>
         </motion.div>

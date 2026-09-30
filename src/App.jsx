@@ -2,8 +2,9 @@ import Navbar from './components/NavBar'
 import Footer from './components/Footer'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
-import ProjectSection from './components/ProjectSection'
+import WhatWeDoSection from './components/WhatWeDoSection'
 import ContactAndSocial from './components/ContactAndSocial'
+import ProjectSection from './components/ProjectSection'
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
 
       <AboutSection />
 
-      <ProjectSection />
 
+      <WhatWeDoSection />
+
+      <ProjectSection />
 
 
       {/* <ChevronPattern /> */}

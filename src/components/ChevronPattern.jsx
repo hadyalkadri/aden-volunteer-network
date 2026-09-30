@@ -10,10 +10,10 @@ export default function ChevronPattern({
 
   return (
     <svg
-      className={`w-full h-full ${className}`}
+      className={`w-full h-full pointer-events-none ${className}`}
       style={{ opacity }}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 24"
+      // Removed viewBox="0 0 48 24" to prevent tile stretching/zooming
     >
       <defs>
         <pattern
@@ -22,7 +22,6 @@ export default function ChevronPattern({
           height="12"
           patternUnits="userSpaceOnUse"
         >
-
           {/* Main chevron */}
           <path
             d="M0 0 L6 6 L12 0 L18 6 L24 0"
@@ -67,7 +66,6 @@ export default function ChevronPattern({
             stroke={color}
             strokeWidth="0.7"
           />
-
         </pattern>
       </defs>
 
